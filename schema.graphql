@@ -1,0 +1,26 @@
+# To improve query performance, we strongly suggest adding indexes to any field that you plan to filter or sort by
+# Add the `@index` or `@index(unique: true)` annotation after any non-key field
+# https://academy.subquery.network/build/graphql.html#indexing-by-non-primary-key-field
+
+# Store all the bond extra information
+type NominationPoolBondExtra @entity {
+  id: ID! # unique id for this entity
+  account: String! @index(unique: false)
+  pool_id: Int!
+  amount: BigInt!
+  type: NominationBondExtraType!
+  timestamp: Date!
+}
+
+enum NominationBondExtraType {
+  REWARD
+  FREE_BALANCE
+}
+
+type NominationPoolJoin @entity {
+  id: ID! #id is a required field
+  account: String! @index(unique: false)
+  amount: BigInt!
+  poolID: Int!
+  timestamp: Date!
+}
