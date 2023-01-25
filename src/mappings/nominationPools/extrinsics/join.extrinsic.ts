@@ -1,5 +1,5 @@
 import { SubstrateExtrinsic } from '@subql/types';
-import { NominationPoolJoin } from '../../types';
+import { NominationPoolJoinExtrinsic } from '../../../types';
 
 export async function handleExtrinsicJoinPools(
   extrinsic: SubstrateExtrinsic
@@ -9,7 +9,7 @@ export async function handleExtrinsicJoinPools(
   const amount = extrinsic.extrinsic.args[0];
   const depositor = extrinsic.extrinsic.signer.toString();
 
-  const record = new NominationPoolJoin(
+  const record = new NominationPoolJoinExtrinsic(
     `${extrinsic.block.block.header.number}-${extrinsic.idx}`
   );
 

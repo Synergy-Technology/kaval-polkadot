@@ -1,0 +1,4 @@
+
+# Nominationpool contains 
+- bondExtra
+- 
