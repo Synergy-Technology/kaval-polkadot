@@ -42,8 +42,13 @@ type NominationPoolBondedEvent @entity {
   timestamp: Date!
 }
 
-type Fee @entity {
+type TransactionFeePaidEvent @entity {
   id: ID! #id is a required field
+  ext_id: String! @index(unique: true)
   payee: String! @index(unique: false)
-  amount: BigInt!
+  actual_fee: BigInt!
+  module: String!
+  method: String!
+  tip: BigInt!
+  timestamp: Date!
 }

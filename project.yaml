@@ -52,3 +52,8 @@ dataSources:
           filter:
             module: nominationPools
             method: Bonded
+        - handler: handleEventTransactionFeePaid
+          kind: substrate/EventHandler
+          filter:
+            module: transactionPayment
+            method: TransactionFeePaid
