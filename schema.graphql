@@ -61,3 +61,11 @@ type NominationPoolCreatedEvent @entity {
   depositor: String! @index(unique: false)
   timestamp: Date!
 }
+
+type NominationPoolSlashedEvent @entity {
+  id: ID! #id is a required field
+  ext_id: String! @index(unique: true)
+  poolId: Int!
+  amount: BigInt!
+  timestamp: Date!
+}

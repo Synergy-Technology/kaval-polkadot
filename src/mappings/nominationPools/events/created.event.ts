@@ -2,8 +2,7 @@
 import {SubstrateEvent} from '@subql/types';
 import { NominationPoolCreatedEvent } from '../../../types';
 
-export async function handleEventNominationPoolCreatedEvent(event: SubstrateEvent): Promise<void> {
-  logger.info(`NominationPoolCreatedEvent: ${event.block.block.header.number}-${event.idx}`);
+export async function handleEventNominationPoolCreated(event: SubstrateEvent): Promise<void> {
   const id = `${event.block.block.header.number}-${event.idx}`;
   const pool = new NominationPoolCreatedEvent(id);
   pool.ext_id = `${event.block.block.header.number}-${event.extrinsic.idx}`;
