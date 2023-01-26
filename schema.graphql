@@ -3,24 +3,52 @@
 # https://academy.subquery.network/build/graphql.html#indexing-by-non-primary-key-field
 
 # Store all the bond extra information
-type NominationPoolBondExtra @entity {
+type NominationPoolBondExtraExtrinsic @entity {
   id: ID! # unique id for this entity
   account: String! @index(unique: false)
-  pool_id: Int!
-  amount: BigInt!
   type: NominationBondExtraType!
   timestamp: Date!
 }
 
 enum NominationBondExtraType {
-  REWARD
-  FREE_BALANCE
+  REWARDS
+  FREEBALANCE
 }
 
-type NominationPoolJoin @entity {
+type NominationPoolJoinExtrinsic @entity {
   id: ID! #id is a required field
   account: String! @index(unique: false)
   amount: BigInt!
   poolID: Int!
+  timestamp: Date!
+}
+
+type NominationPoolPaidOutEvent @entity {
+  id: ID! #id is a required field
+  ext_id: String! @index(unique: true)
+  account: String! @index(unique: false)
+  amount: BigInt!
+  poolID: Int!
+  timestamp: Date!
+}
+
+type NominationPoolBondedEvent @entity {
+  id: ID! #id is a required field
+  ext_id: String! @index(unique: true)
+  account: String! @index(unique: false)
+  poolID: Int!
+  amount: BigInt!
+  isJoin: Boolean! # indicates if the bonded action if first to join the pool.
+  timestamp: Date!
+}
+
+type TransactionFeePaidEvent @entity {
+  id: ID! #id is a required field
+  ext_id: String! @index(unique: true)
+  payee: String! @index(unique: false)
+  actual_fee: BigInt!
+  module: String!
+  method: String!
+  tip: BigInt!
   timestamp: Date!
 }

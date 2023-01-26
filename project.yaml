@@ -42,3 +42,18 @@ dataSources:
             success: true
             module: nominationPools
             method: join
+        - handler: handleEventPaidOut
+          kind: substrate/EventHandler
+          filter:
+            module: nominationPools
+            method: PaidOut
+        - handler: handleEventBonded
+          kind: substrate/EventHandler
+          filter:
+            module: nominationPools
+            method: Bonded
+        - handler: handleEventTransactionFeePaid
+          kind: substrate/EventHandler
+          filter:
+            module: transactionPayment
+            method: TransactionFeePaid

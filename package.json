@@ -1,7 +1,7 @@
 {
   "name": "kaval-polkadot",
   "version": "0.0.1",
-  "description": "The Subquery aof polkadot.",
+  "description": "The Subquery of polkadot.",
   "main": "dist/index.js",
   "scripts": {
     "build": "subql build",
