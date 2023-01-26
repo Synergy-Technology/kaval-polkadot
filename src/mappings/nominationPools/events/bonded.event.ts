@@ -14,7 +14,7 @@ export async function handleEventBonded(event: SubstrateEvent): Promise<void> {
   record.ext_id = extrinsic_id;
   record.account = account;
   record.amount = BigInt(amount);
-  record.poolID = Number(pool_id);
+  record.poolId = Number(pool_id);
   record.isJoin = is_join;
   record.timestamp = timestamp;
 
