@@ -13,7 +13,7 @@ export async function handleEventPaidOut(event: SubstrateEvent): Promise<void> {
   record.ext_id = extrinsic_id;
   record.account = account;
   record.amount = BigInt(amount);
-  record.poolId = Number(pool_id);
+  record.pool_id = Number(pool_id);
   record.timestamp = timestamp;
 
   await record.save();

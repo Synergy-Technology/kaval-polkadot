@@ -14,7 +14,7 @@ export async function handleExtrinsicJoinPools(
   );
 
   record.timestamp = timestamp;
-  record.poolId = Number(pool_id);
+  record.pool_id = Number(pool_id);
   record.amount = BigInt(amount.toString());
   record.account = depositor;
   await record.save();
