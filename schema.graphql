@@ -69,3 +69,18 @@ type NominationPoolSlashedEvent @entity {
   amount: BigInt!
   timestamp: Date!
 }
+
+# Request for unbond some amount from the pool, this event is emitted when the unbond extrinsic is called
+# The total unbond amount will not be more than current bonded amount
+type NominationPoolUnbondedEvent @entity {
+  id: ID! #id is a required field
+  extrinsic_id: String! @index(unique: true)
+  account: String! @index(unique: false) # account that unbonded from their pool
+  pool_id: Int! 
+  # is the corresponding balance/amount was requested to be unbonded (this value is the actual argument passed to the unbound transaction) from the bonded pool
+  request_amount_to_unbond: BigInt!
+  # is the actual amount that was unbonded from the pool. This value is less than the requested amount to unbond if slashing occurred.
+  actual_amount_unbond: BigInt!
+  era_to_claim: Int! # is the era in which the balance will be unbonded. In the absence of slashing, these values will match. In the presence of slashing, the number of points that are issued in the unbonding pool will be less than the amount requested to be unbonded.
+  timestamp: Date!
+}
