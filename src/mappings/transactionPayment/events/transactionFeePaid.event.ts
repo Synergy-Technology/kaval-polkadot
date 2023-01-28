@@ -11,7 +11,7 @@ export async function handleEventTransactionFeePaid(
   const tip = event.event.data[2].toString();
 
   const record = new TransactionFeePaidEvent(id);
-  record.ext_id = extrinsic_id;
+  record.extrinsic_id = extrinsic_id;
   record.payee = account;
   record.actual_fee = BigInt(actual_fees);
   record.tip = BigInt(tip);

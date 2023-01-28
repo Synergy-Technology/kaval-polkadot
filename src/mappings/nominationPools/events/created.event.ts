@@ -1,12 +1,11 @@
 //A new pool has been created by a depositor.
 import {SubstrateEvent} from '@subql/types';
+import { getEventId, getExtrinsicId } from '../../../helper/event.helper';
 import { NominationPoolCreatedEvent } from '../../../types';
 
-export async function handleEventNominationPoolCreated(event: SubstrateEvent): Promise<void> {
-  const id = `${event.block.block.header.number}-${event.idx}`;
-  const pool = new NominationPoolCreatedEvent(id);
-  pool.extrinsic_id = `${event.block.block.header.number}-${event.extrinsic.idx}`;
-
+export async function handleEventNominationPoolsCreated(event: SubstrateEvent): Promise<void> {
+  const pool = new NominationPoolCreatedEvent(getEventId(event));
+  pool.extrinsic_id = getExtrinsicId(event);
   pool.depositor = event.event.data[0].toString();
   pool.pool_id = Number(event.event.data[1].toString());
   pool.timestamp = event.block.timestamp;

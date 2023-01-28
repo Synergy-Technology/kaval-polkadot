@@ -5,7 +5,7 @@ import {
 } from '../../../types';
 
 // store information about the bond_extra record the total fees spent on the bond_extra operation
-export async function handleExtrinsicBondExtra(
+export async function handleExtrinsicNominationPoolsBondExtra(
   extrinsic: SubstrateExtrinsic
 ): Promise<void> {
   const id = `${extrinsic.block.block.header.number}-${extrinsic.idx}`;
