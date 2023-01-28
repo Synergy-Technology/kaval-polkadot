@@ -11,11 +11,11 @@ export async function handleEventBonded(event: SubstrateEvent): Promise<void> {
   const timestamp = event.block.timestamp;
 
   const record = new NominationPoolBondedEvent(id);
-  record.ext_id = extrinsic_id;
+  record.extrinsic_id = extrinsic_id;
   record.account = account;
   record.amount = BigInt(amount);
-  record.poolId = Number(pool_id);
-  record.isJoin = is_join;
+  record.pool_id = Number(pool_id);
+  record.joined = is_join;
   record.timestamp = timestamp;
 
   await record.save();

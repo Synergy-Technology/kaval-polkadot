@@ -19,7 +19,7 @@ type NominationPoolJoinExtrinsic @entity {
   id: ID! #id is a required field
   account: String! @index(unique: false)
   amount: BigInt!
-  poolId: Int!
+  pool_id: Int!
   timestamp: Date!
 }
 
@@ -28,23 +28,23 @@ type NominationPoolPaidOutEvent @entity {
   ext_id: String! @index(unique: true)
   account: String! @index(unique: false)
   amount: BigInt!
-  poolId: Int!
+  pool_id: Int!
   timestamp: Date!
 }
 
 type NominationPoolBondedEvent @entity {
   id: ID! #id is a required field
-  ext_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: true)
   account: String! @index(unique: false)
-  poolId: Int!
+  pool_id: Int!
   amount: BigInt!
-  isJoin: Boolean! # indicates if the bonded action if first to join the pool.
+  joined: Boolean! # indicates if the bonded action if first to join the pool.
   timestamp: Date!
 }
 
 type TransactionFeePaidEvent @entity {
   id: ID! #id is a required field
-  ext_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: true)
   payee: String! @index(unique: false)
   actual_fee: BigInt!
   module: String!
@@ -56,16 +56,16 @@ type TransactionFeePaidEvent @entity {
 #pool has been created
 type NominationPoolCreatedEvent @entity {
   id: ID! #id is a required field
-  ext_id: String! @index(unique: true)
-  poolId: Int!
+  extrinsic_id: String! @index(unique: true)
+  pool_id: Int!
   depositor: String! @index(unique: false)
   timestamp: Date!
 }
 
 type NominationPoolSlashedEvent @entity {
   id: ID! #id is a required field
-  ext_id: String! @index(unique: true)
-  poolId: Int!
+  extrinsic_id: String! @index(unique: true)
+  pool_id: Int!
   amount: BigInt!
   timestamp: Date!
 }
