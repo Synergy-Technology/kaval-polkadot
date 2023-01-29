@@ -1,7 +1,7 @@
 import { SubstrateExtrinsic } from '@subql/types';
 import { NominationPoolJoinExtrinsic } from '../../../types';
 
-export async function handleExtrinsicNominationPoolsJoinPools(
+export async function handleExtrinsicNominationPoolsJoinPool(
   extrinsic: SubstrateExtrinsic
 ): Promise<void> {
   const timestamp = extrinsic.block.timestamp;
