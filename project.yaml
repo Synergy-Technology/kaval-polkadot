@@ -21,13 +21,13 @@ network:
   # When developing your project we suggest getting a private API key
   # You can get them from OnFinality for free https://app.onfinality.io
   # https://documentation.onfinality.io/support/the-enhanced-api-service
-  # endpoint: "wss://polkadot.api.onfinality.io/public-ws"
-  endpoint: "ws://192.168.86.38:8000"
+  endpoint: "wss://polkadot.api.onfinality.io/public-ws"
+  # endpoint: "ws://192.168.86.38:8000"
   # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
   dictionary: "https://api.subquery.network/sq/subquery/polkadot-dictionary"
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 13997949
+    startBlock: 13134593
     mapping:
       file: ./dist/index.js
       handlers:
@@ -37,7 +37,7 @@ dataSources:
             success: true
             module: nominationPools
             method: bondExtra
-        - handler: handleExtrinsicNominationPoolsJoinPools
+        - handler: handleExtrinsicNominationPoolsJoinPool
           kind: substrate/CallHandler
           filter:
             success: true
@@ -73,3 +73,8 @@ dataSources:
           filter:
             module: nominationPools
             method: Unbonded
+        - handler: handleEventNominationPoolsWithdrawn
+          kind: substrate/EventHandler
+          filter:
+            module: nominationPools
+            method: Withdrawn
