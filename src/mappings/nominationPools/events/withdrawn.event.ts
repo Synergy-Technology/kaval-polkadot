@@ -10,5 +10,6 @@ export async function handleEventNominationPoolsWithdrawn(event: SubstrateEvent)
     withdrawn.balance = BigInt(event.event.data[2].toString());
     withdrawn.point = BigInt(event.event.data[3].toString());
     withdrawn.timestamp = event.block.timestamp;
+    withdrawn.save();
 }
 
