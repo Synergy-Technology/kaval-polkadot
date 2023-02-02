@@ -115,3 +115,11 @@ type NominationPoolStateChanged @entity {
   new_state: NominationPoolState!
   timestamp: Date!
 }
+
+type NominationPoolMemberRemoved @entity {
+  id: ID! #id is a required field
+  extrinsic_id: String! @index(unique: true)
+  pool_id: Int!
+  account: String! @index(unique: false)
+  timestamp: Date!
+}

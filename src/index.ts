@@ -13,6 +13,7 @@ export * from './mappings/nominationPools/events/unbonded.event';
 export * from './mappings/nominationPools/events/withdrawn.event';
 export * from './mappings/nominationPools/events/destroyed.event';
 export * from './mappings/nominationPools/events/state_changed.event';
+export * from './mappings/nominationPools/events/member_removed.events';
 
 // transaction payment Events
 export * from './mappings/transactionPayment/events/transactionFeePaid.event';
