@@ -94,3 +94,10 @@ type NominationPoolWithdrawnEvent @entity {
   point: BigInt!
   timestamp: Date!
 }
+
+type NominationPoolDestroyedEvent @entity {
+  id: ID! #id is a required field
+  extrinsic_id: String! @index(unique: true)
+  pool_id: Int!
+  timestamp: Date!
+}
