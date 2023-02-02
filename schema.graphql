@@ -101,3 +101,17 @@ type NominationPoolDestroyedEvent @entity {
   pool_id: Int!
   timestamp: Date!
 }
+
+enum NominationPoolState {
+  Open
+  Blocked
+  Destroying
+}
+
+type NominationPoolStateChanged @entity {
+  id: ID! #id is a required field
+  extrinsic_id: String! @index(unique: true)
+  pool_id: Int!
+  new_state: NominationPoolState!
+  timestamp: Date!
+}

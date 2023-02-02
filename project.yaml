@@ -27,7 +27,7 @@ network:
   dictionary: "https://api.subquery.network/sq/subquery/polkadot-dictionary"
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 13853528
+    startBlock: 13794661
     mapping:
       file: ./dist/index.js
       handlers:
@@ -83,3 +83,8 @@ dataSources:
           filter:
             module: nominationPools
             method: Destroyed
+        - handler: handleEventNominationPoolsStateChanged
+          kind: substrate/EventHandler
+          filter:
+            module: nominationPools
+            method: StateChanged
