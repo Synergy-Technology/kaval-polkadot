@@ -11,6 +11,7 @@ export * from './mappings/nominationPools/events/paidout.event';
 export * from './mappings/nominationPools/events/poolslashed.event';
 export * from './mappings/nominationPools/events/unbonded.event';
 export * from './mappings/nominationPools/events/withdrawn.event';
+export * from './mappings/nominationPools/events/destroyed.event';
 
 // transaction payment Events
 export * from './mappings/transactionPayment/events/transactionFeePaid.event';
