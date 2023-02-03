@@ -25,7 +25,7 @@ type NominationPoolJoinExtrinsic @entity {
 
 type NominationPoolPaidOutEvent @entity {
   id: ID! #id is a required field
-  ext_id: String! @index(unique: true)
+  ext_id: String! @index(unique: false)
   account: String! @index(unique: false)
   amount: BigInt!
   pool_id: Int!
@@ -34,7 +34,7 @@ type NominationPoolPaidOutEvent @entity {
 
 type NominationPoolBondedEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   account: String! @index(unique: false)
   pool_id: Int!
   amount: BigInt!
@@ -44,7 +44,7 @@ type NominationPoolBondedEvent @entity {
 
 type TransactionFeePaidEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   payee: String! @index(unique: false)
   actual_fee: BigInt!
   module: String!
@@ -56,15 +56,15 @@ type TransactionFeePaidEvent @entity {
 #pool has been created
 type NominationPoolCreatedEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
-  pool_id: Int!
-  depositor: String! @index(unique: false)
+  extrinsic_id: String! @index(unique: false)
+  pool_id: Int! @index(unique: false)
+  depositor: String! @index
   timestamp: Date!
 }
 
 type NominationPoolSlashedEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   pool_id: Int!
   amount: BigInt!
   timestamp: Date!
@@ -74,9 +74,9 @@ type NominationPoolSlashedEvent @entity {
 # The total unbond amount will not be more than current bonded amount
 type NominationPoolUnbondedEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   account: String! @index(unique: false) # account that unbonded from their pool
-  pool_id: Int! 
+  pool_id: Int!
   # is the corresponding balance/amount was requested to be unbonded (this value is the actual argument passed to the unbound transaction) from the bonded pool
   request_amount_to_unbond: BigInt!
   # is the actual amount that was unbonded from the pool. This value is less than the requested amount to unbond if slashing occurred.
@@ -87,7 +87,7 @@ type NominationPoolUnbondedEvent @entity {
 
 type NominationPoolWithdrawnEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   account: String! @index(unique: false) # account that unbonded from their pool
   pool_id: Int!
   balance: BigInt!
@@ -97,7 +97,7 @@ type NominationPoolWithdrawnEvent @entity {
 
 type NominationPoolDestroyedEvent @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   pool_id: Int!
   timestamp: Date!
 }
@@ -110,7 +110,7 @@ enum NominationPoolState {
 
 type NominationPoolStateChanged @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   pool_id: Int!
   new_state: NominationPoolState!
   timestamp: Date!
@@ -118,8 +118,19 @@ type NominationPoolStateChanged @entity {
 
 type NominationPoolMemberRemoved @entity {
   id: ID! #id is a required field
-  extrinsic_id: String! @index(unique: true)
+  extrinsic_id: String! @index(unique: false)
   pool_id: Int!
   account: String! @index(unique: false)
+  timestamp: Date!
+}
+
+type NominationPoolRolesUpdated @entity {
+  id: ID! #id is a required field
+  extrinsic_id: String! @index(unique: false)
+  pool_id: Int!
+  signer_account: String!
+  root_account: String
+  state_toggler_account: String
+  nominator_account: String
   timestamp: Date!
 }
