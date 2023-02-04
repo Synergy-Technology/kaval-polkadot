@@ -1,6 +1,6 @@
 specVersion: 1.0.0
 name: kaval-polkadot
-version: 0.0.1
+version: 0.0.2
 runner:
   node:
     name: "@subql/node"
@@ -53,11 +53,11 @@ dataSources:
           filter:
             module: nominationPools
             method: Bonded
-        # - handler: handleEventTransactionFeePaid
-        #   kind: substrate/EventHandler
-        #   filter:
-        #     module: transactionPayment
-        #     method: TransactionFeePaid
+        - handler: handleEventTransactionFeePaid
+          kind: substrate/EventHandler
+          filter:
+            module: transactionPayment
+            method: TransactionFeePaid
         - handler: handleEventNominationPoolsCreated
           kind: substrate/EventHandler
           filter:
@@ -98,3 +98,8 @@ dataSources:
           filter:
             module: nominationPools
             method: RolesUpdated
+        - handler: handleEventNominationUnbondingPoolSlashed
+          kind: substrate/EventHandler
+          filter:
+            module: nominationPools
+            method: UnbondingPoolSlashed
