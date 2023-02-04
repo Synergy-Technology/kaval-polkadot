@@ -9,7 +9,7 @@ runner:
     name: "@subql/query"
     version: "*"
 description: >-
-  The Subquery aof polkadot.
+  The Subquery of polkadot.
 repository: "https://github.com/Synergy-Technology/kaval-polkadot.git"
 schema:
   file: ./schema.graphql
