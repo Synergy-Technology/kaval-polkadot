@@ -9,7 +9,7 @@ export async function handleEventNominationPoolsPaidOut(event: SubstrateEvent): 
   const timestamp = event.block.timestamp;
 
   const record = new NominationPoolPaidOutEvent(getEventId(event));
-  record.ext_id = getExtrinsicId(event);
+  record.extrinsic_id = getExtrinsicId(event);
   record.account = account;
   record.amount = BigInt(amount);
   record.pool_id = Number(pool_id);
