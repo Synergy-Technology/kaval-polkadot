@@ -25,7 +25,7 @@ type NominationPoolJoinExtrinsic @entity {
 
 type NominationPoolPaidOutEvent @entity {
   id: ID! #id is a required field
-  ext_id: String! @index(unique: false)
+  extrinsic_id: String! @index(unique: false)
   account: String! @index(unique: false)
   amount: BigInt!
   pool_id: Int!
