@@ -134,3 +134,13 @@ type NominationPoolRolesUpdated @entity {
   nominator_account: String
   timestamp: Date!
 }
+
+# the unbound pool at era of pool pool_id has been slashed to balance.
+type NominationPoolUnbondingPoolSlashed @entity {
+  id: ID! #id is a required field
+  extrinsic_id: String! @index(unique: false)
+  pool_id: Int!
+  era: Int!
+  amount: BigInt!
+  timestamp: Date!
+}
