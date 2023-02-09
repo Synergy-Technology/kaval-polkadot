@@ -16,8 +16,20 @@ export async function handleEventNominationPoolsRolesUpdated(
   rolesUpdated.state_toggler_account = event.event.data[1].toString();
   rolesUpdated.nominator_account = event.event.data[2].toString();
   rolesUpdated.timestamp = event.block.timestamp;
-  const created = await NominationPoolCreatedEvent.getByDepositor(signer);
-  rolesUpdated.pool_id = created[0].pool_id;
+  try {
+    const created = await NominationPoolCreatedEvent.getByDepositor(signer);
+
+  // If the pool was created in the same block, this might not be available yet
+  if(created) {
+    if(created.length > 0) {
+      rolesUpdated.pool_id = created[0].pool_id;
+    }else {
+      rolesUpdated.pool_id = -1;
+    }
+  }
+  } catch (error) {
+    rolesUpdated.pool_id = -1;
+  }
 
   rolesUpdated.save();
 }
